@@ -6,6 +6,7 @@
 
     <groupId>com.marco</groupId>
     <artifactId>mtools</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
 
     <build>
@@ -20,4 +21,17 @@
             </plugin>
         </plugins>
     </build>
+    <modules>
+        <module>datetime</module>
+    </modules>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>4.12</version>
+                <scope>test</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 </project>
