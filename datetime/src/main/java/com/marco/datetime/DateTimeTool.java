@@ -5,8 +5,7 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
-import static java.time.temporal.ChronoField.MICRO_OF_SECOND;
-import static java.time.temporal.ChronoField.MILLI_OF_SECOND;
+import static java.time.temporal.ChronoField.*;
 
 public class DateTimeTool {
     /**
@@ -30,54 +29,58 @@ public class DateTimeTool {
     }
 
     /**
-     * 返回UTC+8:00的ZoneDateTime对象
+     * 返回UTC+8
+     * 的ZonedteTime对象
      * @return
      */
-    public static ZonedDateTime getZoneDateTime(){
-        return getZoneDateTimeWithZoneId("UTC+8:00");
+    public static ZonedDateTime getZonedDateTime(){
+        return getZonedDateTimeWithZoneId("UTC+8");
     }
 
     /**
-     * 返回ZoneDateTime对象，参数出错返回null；
-     * @param zoneId 如："UTC+8:00"
+     * 返回ZonedDateTime对象，参数出错返回null；
+     * @param zoneId 如："UTC+8
+     *               "
      * @return
      */
-    public static ZonedDateTime getZoneDateTimeWithZoneId(String zoneId){
+    public static ZonedDateTime getZonedDateTimeWithZoneId(String zoneId){
         try {
             return ZonedDateTime.now(getZoneId(zoneId));
         } catch (Exception e){
             return null;
         }
-
     }
 
     /**
-     * 返回ZoneId对象，默认为："UTC+8:00"
+     * 返回ZoneId对象，默认为："UTC+8
+     * "
      * @return
      */
     public static ZoneId getZoneId(){
-        return getZoneId("UTC+8:00");
+        return getZoneId("UTC+8");
     }
 
     /**
      * 返回ZoneId对象，参数出错返回null；
-     * @param zoneId 如："UTC+8:00"
+     * @param zoneId 如："UTC+8
+     *               "
      * @return
      */
     public static ZoneId getZoneId(String zoneId){
         try {
-            return getZoneId(zoneId);
+            return ZoneId.of(zoneId);
         } catch (Exception e){
             return null;
         }
     }
 
     /**
-     * 返回ZonedDateTime对象，默认时区："UTC+8:00"
+     * 返回ZonedDateTime对象，默认时区："UTC+8
+     * "
      * @param second 单位：秒
      * @return
      */
-    public static ZonedDateTime getZoneDateTimeWithSecond(Long second) {
+    public static ZonedDateTime getZonedDateTimeWithSecond(Long second) {
         return ZonedDateTime.ofInstant(Instant.ofEpochSecond(second), getZoneId());
     }
 
@@ -87,16 +90,21 @@ public class DateTimeTool {
      * @param zoneId
      * @return
      */
-    public static ZonedDateTime getZoneDateTimeWithSecondAndZoneId(Long second,ZoneId zoneId){
-        return ZonedDateTime.ofInstant(Instant.ofEpochSecond(second), zoneId);
+    public static ZonedDateTime getZonedDateTimeWithSecondAndZoneId(Long second, ZoneId zoneId){
+        try {
+            return ZonedDateTime.ofInstant(Instant.ofEpochSecond(second), zoneId);
+        }catch (Exception e){
+            return null;
+        }
     }
 
     /**
-     * 返回ZonedDateTime对象，默认时区："UTC+8:00"
+     * 返回ZonedDateTime对象，默认时区："UTC+8
+     * "
      * @param millisecond 单位：毫秒
      * @return
      */
-    public static ZonedDateTime getZoneDateTimeWithMillisecond(Long millisecond){
+    public static ZonedDateTime getZonedDateTimeWithMillisecond(Long millisecond){
         return ZonedDateTime.ofInstant(Instant.ofEpochMilli(millisecond),getZoneId());
     }
 
@@ -106,8 +114,12 @@ public class DateTimeTool {
      * @param zoneId
      * @return
      */
-    public static ZonedDateTime getZoneDateTimeWithMillisecondAndZoneId(Long millisecond,ZoneId zoneId){
-        return ZonedDateTime.ofInstant(Instant.ofEpochMilli(millisecond),zoneId);
+    public static ZonedDateTime getZonedDateTimeWithMillisecondAndZoneId(Long millisecond, ZoneId zoneId){
+        try {
+            return ZonedDateTime.ofInstant(Instant.ofEpochMilli(millisecond),zoneId);
+        }catch (Exception e){
+            return null;
+        }
     }
 
     /**
@@ -115,7 +127,7 @@ public class DateTimeTool {
      * @return
      */
     public static Long getSecond(){
-        return getZoneDateTime().getLong(MICRO_OF_SECOND);
+        return getZonedDateTime().getLong(INSTANT_SECONDS);
     }
 
     /**
@@ -123,11 +135,13 @@ public class DateTimeTool {
      * @return
      */
     public static Long getMillisecond(){
-        return getZoneDateTime().getLong(MILLI_OF_SECOND);
+        ZonedDateTime zonedDateTime = getZonedDateTime();
+        Long millisecond = zonedDateTime.getLong(INSTANT_SECONDS)*1000+zonedDateTime.getLong(NANO_OF_SECOND)/1000000;
+        return millisecond;
     }
 
     public static String long2String(Long millisecond,String format){
-        ZonedDateTime zonedDateTime = getZoneDateTimeWithMillisecond(millisecond);
+        ZonedDateTime zonedDateTime = getZonedDateTimeWithMillisecond(millisecond);
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(format);
         return zonedDateTime.format(dateTimeFormatter);
     }
