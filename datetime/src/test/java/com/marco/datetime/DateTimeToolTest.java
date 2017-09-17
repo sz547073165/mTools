@@ -4,13 +4,11 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.awt.*;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 
-/**
- * Created by Administrator on 2017/9/16 0016.
- */
 public class DateTimeToolTest {
     @Before
     public void setUp() throws Exception {
@@ -54,8 +52,7 @@ public class DateTimeToolTest {
 
     @Test
     public void getZoneId1() throws Exception {
-        ZoneId zoneId1 = DateTimeTool.getZoneId("UTC+8" +
-                "");
+        ZoneId zoneId1 = DateTimeTool.getZoneId("UTC+8");
         System.out.println(zoneId1);
         ZoneId zoneId2 = DateTimeTool.getZoneId("asdga ");
         System.out.println(zoneId2);
@@ -103,6 +100,36 @@ public class DateTimeToolTest {
     public void getMillisecond() throws Exception {
         Long time = DateTimeTool.getMillisecond();
         System.out.println(time);
+    }
+
+    @Test
+    public void millisecond2String() throws Exception{
+        Long time = DateTimeTool.getMillisecondWithInstant();
+        String str = "yyyy-MM-dd HH:mm:ss";
+        System.out.println(DateTimeTool.millisecond2String(time,str));
+        Long time2 = DateTimeTool.getSecondWithInstant();
+        String str2 = "yyyy-MM-dd HH:mm:ss";
+        System.out.println(DateTimeTool.second2String(time2,str2));
+    }
+
+    @Test
+    public void dateStr2second() throws Exception{
+        String dateTimeStr = "2017-11-12 12:40:20";
+        String format = "yyyy-MM-dd HH:mm:ss";
+        Long second = DateTimeTool.dateTimeStr2second(dateTimeStr,format);
+        System.out.println(second);
+        Long millisecond = DateTimeTool.dateTimeStr2Millisecond(dateTimeStr,format);
+        System.out.println(millisecond);
+    }
+
+    @Test
+    public void timeGap(){
+        Long startMillisecond = DateTimeTool.getMillisecondWithInstant();
+        Long endMillisecond = startMillisecond+146234234L;
+        String gap = DateTimeTool.getMillisecondGap(startMillisecond,endMillisecond);
+        System.out.println(gap);
+        String gap2 = DateTimeTool.getSecondGap(startMillisecond/1000,endMillisecond/1000);
+        System.out.println(gap2);
     }
 
 }
