@@ -23,6 +23,7 @@
     </build>
     <modules>
         <module>datetime</module>
+        <module>string</module>
     </modules>
     <dependencyManagement>
         <dependencies>

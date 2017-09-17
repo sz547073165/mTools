@@ -31,7 +31,7 @@ public class DateTimeTool {
     }
 
     /**
-     * 返回UTC+8的ZonedteTime对象
+     * 返回UTC+8的ZonedTimeTime对象
      *
      * @return
      */
@@ -260,7 +260,7 @@ public class DateTimeTool {
         } else if (day <= 0 && hour > 0) {
             result += hour + "小时" + min + "分钟";
         } else if (day <= 0 && hour <= 0 && min > 0) {
-            result += min + "分钟";
+            result += min + "分钟" + s + "秒";
         } else if (day <= 0 && hour <= 0 && min <= 0 && s > 0) {
             result += s + "秒";
         } else if (day <= 0 && hour <= 0 && min <= 0 && s <= 0) {

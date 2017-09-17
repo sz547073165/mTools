@@ -86,7 +86,7 @@ public class DateTimeToolTest {
     public void getZonedDateTimeWithMillisecondAndZoneId() throws Exception {
         ZonedDateTime zonedDateTime1 = DateTimeTool.getZonedDateTimeWithMillisecondAndZoneId(Instant.now().toEpochMilli(), ZoneId.of("UTC+8"));
         System.out.println(zonedDateTime1);
-        ZonedDateTime zonedDateTime2 = DateTimeTool.getZonedDateTimeWithMillisecondAndZoneId(-Instant.now().toEpochMilli(),DateTimeTool.getZoneId("agag"));
+        ZonedDateTime zonedDateTime2 = DateTimeTool.getZonedDateTimeWithMillisecondAndZoneId(-Instant.now().toEpochMilli(), DateTimeTool.getZoneId("agag"));
         System.out.println(zonedDateTime2);
     }
 
@@ -103,32 +103,32 @@ public class DateTimeToolTest {
     }
 
     @Test
-    public void millisecond2String() throws Exception{
+    public void millisecond2String() throws Exception {
         Long time = DateTimeTool.getMillisecondWithInstant();
         String str = "yyyy-MM-dd HH:mm:ss";
-        System.out.println(DateTimeTool.millisecond2String(time,str));
+        System.out.println(DateTimeTool.millisecond2String(time, str));
         Long time2 = DateTimeTool.getSecondWithInstant();
         String str2 = "yyyy-MM-dd HH:mm:ss";
-        System.out.println(DateTimeTool.second2String(time2,str2));
+        System.out.println(DateTimeTool.second2String(time2, str2));
     }
 
     @Test
-    public void dateStr2second() throws Exception{
+    public void dateStr2second() throws Exception {
         String dateTimeStr = "2017-11-12 12:40:20";
         String format = "yyyy-MM-dd HH:mm:ss";
-        Long second = DateTimeTool.dateTimeStr2second(dateTimeStr,format);
+        Long second = DateTimeTool.dateTimeStr2second(dateTimeStr, format);
         System.out.println(second);
-        Long millisecond = DateTimeTool.dateTimeStr2Millisecond(dateTimeStr,format);
+        Long millisecond = DateTimeTool.dateTimeStr2Millisecond(dateTimeStr, format);
         System.out.println(millisecond);
     }
 
     @Test
-    public void timeGap(){
+    public void timeGap() {
         Long startMillisecond = DateTimeTool.getMillisecondWithInstant();
-        Long endMillisecond = startMillisecond+146234234L;
-        String gap = DateTimeTool.getMillisecondGap(startMillisecond,endMillisecond);
+        Long endMillisecond = startMillisecond + 146234234L;
+        String gap = DateTimeTool.getMillisecondGap(startMillisecond, endMillisecond);
         System.out.println(gap);
-        String gap2 = DateTimeTool.getSecondGap(startMillisecond/1000,endMillisecond/1000);
+        String gap2 = DateTimeTool.getSecondGap(startMillisecond / 1000, endMillisecond / 1000);
         System.out.println(gap2);
     }
 
