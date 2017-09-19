@@ -13,7 +13,11 @@ public class Encryption {
      * @return
      */
     public static String encodeByMD5WithLowerCase(String str) {
-        return str == null ? null : encodeByMD5WithUpperCase(str).toLowerCase();
+        try {
+            return encodeByMD5WithUpperCase(str).toLowerCase();
+        } catch (NullPointerException e) {
+            return null;
+        }
     }
 
     /**
@@ -23,9 +27,6 @@ public class Encryption {
      * @return
      */
     public static String encodeByMD5WithUpperCase(String str) {
-        if (str == null) {
-            return null;
-        }
         MessageDigest md = null;
         byte[] bytes = null;
         try {
@@ -34,6 +35,8 @@ public class Encryption {
         } catch (NoSuchAlgorithmException e) {
             return null;
         } catch (UnsupportedEncodingException e) {
+            return null;
+        } catch (NullPointerException e) {
             return null;
         }
         return byteArray2String(bytes);
