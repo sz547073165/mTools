@@ -9,10 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>string</artifactId>
-    <packaging>jar</packaging>
-
-    <name>string</name>
+    <artifactId>encryption</artifactId>
     <url>http://maven.apache.org</url>
 
     <properties>

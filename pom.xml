@@ -24,6 +24,7 @@
     <modules>
         <module>datetime</module>
         <module>string</module>
+        <module>encryption</module>
     </modules>
     <dependencyManagement>
         <dependencies>
